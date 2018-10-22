@@ -51,3 +51,8 @@ export const fetchGossipsSuccess = (
     type: types.FETCH_GOSSIPS_SUCCESS,
     payload: gossips
 })
+
+export const setCurrentGossip = (id) => ({
+    type: types.SET_CURRENT_GOSSIP,
+    payload: id,
+})

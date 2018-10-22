@@ -23,11 +23,12 @@ const byId = (state = {}, action) => {
         }
 
         case types.GOSSIP_UPDATED: {
-            const {old_id, id, title, content} = action.payload;
+            const {old_id, id, title, content, date} = action.payload;
             const new_gossip = {
                 id,
                 title,
                 content,
+                date,
             }
             const new_state = state;
             delete new_state[id];

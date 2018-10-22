@@ -1,0 +1,10 @@
+.list {
+    margin: 0rem auto;
+    padding: 0rem;
+    width: 50rem;
+}
+
+.port {
+    overflow-y: scroll;
+    max-height: 27rem;
+}

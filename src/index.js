@@ -3,23 +3,36 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 
+import {
+  BrowserRouter as Router,
+  Route,
+} from 'react-router-dom';
+
 import configureStore from './configureStore';
 
-import * as actions from './actions'; 
+import * as routes from './routes';
 
 import HomeApp from './components/home/homeApp';
+import PostApp from './components/gossip/gossipApp';
+
+import * as actions from './actions';
+
+import './index.css';
 
 const store = configureStore();
 
-console.log(store.getState());
-store.dispatch(actions.postGossip("Primer post", "Es el primer post. Usado para pruebas. Por favor comentar para dejar sugerencia."));
-console.log(store.getState());
+store.dispatch(actions.setCurrentGossip("id"))
 
 ReactDOM.render(
-    <Provider store={store}>
-        <HomeApp />
-    </Provider>, 
-    document.getElementById('root')
+  <Provider store={store}>
+    <Router>
+      <div className="app">
+        <Route exact path='' component={() => <HomeApp />} />
+        <Route exact path={routes.POST} component={() => <PostApp /> } />
+      </div>
+    </Router>
+  </Provider>,
+  document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change

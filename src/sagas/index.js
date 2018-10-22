@@ -21,6 +21,12 @@ const saveGossip = (url, gossip) =>
         .then( response => response.json())
         .catch( e => console.log(e))
 
+const removeGossip = (url, id) => 
+    fetch(`${url}${id}/`, {
+        method: 'DELETE',
+    })
+        .catch( e => console.log(e) )
+
 
 // get Gossips
 export function* fetchGossips(action) {
@@ -51,4 +57,18 @@ export function* postGossip(action) {
 
     }
 }
+
+// delete Gossip
+export function* deleteGossip(action) {
+    try {
+
+        yield call(removeGossip, 'http://localhost:8000/api/v1/chismes/', action.payload );
+
+        //yield put(actions.fetchGossipsRequest());;
+    }
+    catch (e) {
+
+    }
+}
+
 
